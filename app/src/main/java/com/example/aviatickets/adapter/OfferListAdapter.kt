@@ -33,8 +33,16 @@ class OfferListAdapter : RecyclerView.Adapter<OfferListAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemOfferBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(offer: Offer) {
-            val flight = offer.flight
+            binding.apply {
+                // Bind offer data to views
+                departureTime.text = offer.flight.departureTimeInfo
+                arrivalTime.text = offer.flight.arrivalTimeInfo
+                route.text = "${offer.flight.departureLocation.cityName} - ${offer.flight.arrivalLocation.cityName}"
+                duration.text = "${offer.flight.duration} мин"
+                price.text = offer.price.toString()
+            }
         }
     }
 
@@ -60,3 +68,4 @@ class OfferListAdapter : RecyclerView.Adapter<OfferListAdapter.ViewHolder>() {
         }
     }
 }
+
